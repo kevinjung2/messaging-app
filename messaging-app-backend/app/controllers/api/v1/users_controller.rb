@@ -1,5 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  def show
+  def profile
+
+  end
+
+  def friends
 
   end
 
@@ -11,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
 
   end
 
-  def delete
+  def destroy
 
   end
 end
