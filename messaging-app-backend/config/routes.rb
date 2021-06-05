@@ -2,11 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
-      get '/login', to: 'sessions#new'
-      post '/login', to: 'sessions#create'
-      delete '/logout' to: 'sessions#destroy'
-
-      resources :users do
+      resources :users, except: [:index, :edit, :new] do
         resources :conversations
         resources :messages
       end
