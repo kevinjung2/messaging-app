@@ -2,8 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :messages
-  has_many :user_conversations
-  has_many :conversations, through: :user_conversations
+  has_many :conversations, through: :messages
 
   #sets up self reference through Friendship model
   has_many :followers, foreign_key: :follower_id , class_name: "Friendship"
