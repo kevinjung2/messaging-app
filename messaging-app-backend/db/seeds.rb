@@ -35,13 +35,13 @@ users = User.create([
 ])
 
 messages = Message.create([
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Aaron"), conversation: Conversation.create(name: "convo1")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Brad"), conversation: Conversation.find_by(name: "convo1")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Carl"), conversation: Conversation.find_by(name: "convo1")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Derek"), conversation: Conversation.find_by(name: "convo1")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Penelope"), conversation: Conversation.create(name: "convo2")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Quenton"), conversation: Conversation.find_by(name: "convo2")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Kevin"), conversation: Conversation.find_by(name: "convo2")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Noah"), conversation: Conversation.create(name: "convo3")},
-  {content: "MESSAGE_INIT", user: User.find_by(username: "Jaron"), conversation: Conversation.find_by(name: "convo3")}
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Aaron"), conversation: Conversation.create(name: "convo1")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Brad"), conversation: Conversation.find_by(name: "convo1")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Carl"), conversation: Conversation.find_by(name: "convo1")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Derek"), conversation: Conversation.find_by(name: "convo1")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Penelope"), conversation: Conversation.create(name: "convo2")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Quenton"), conversation: Conversation.find_by(name: "convo2")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Kevin"), conversation: Conversation.find_by(name: "convo2")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Noah"), conversation: Conversation.create(name: "convo3")},
+  {content: "INIT_MESSAGE", user: User.find_by(username: "Jaron"), conversation: Conversation.find_by(name: "convo3")}
 ])
