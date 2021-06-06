@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authorized
 
   def encode_token(payload)
-    #need to move tis secret key into .env at some point!!!
+    #need to move this secret key into .env at some point!!!
     JWT.encode(payload, 'rCCKFUCUk45wHY5f6eEUwEkhgbERybvSkOAPBVn-7qZPhDUAkUjZDwSFH5Y3aMohiQCp-2bwCnO4mb6nnHgiAg')
   end
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
     if auth_header()
       token = auth_header.split(' ')[1]
       begin
-        JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+        JWT.decode(token, 'rCCKFUCUk45wHY5f6eEUwEkhgbERybvSkOAPBVn-7qZPhDUAkUjZDwSFH5Y3aMohiQCp-2bwCnO4mb6nnHgiAg', true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
