@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  include ActiveModel::Model
   has_secure_password
 
   has_many :messages
