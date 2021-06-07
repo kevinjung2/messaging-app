@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import ConversationTag from '../components/ConversationTag'
 import { connect } from 'react-redux'
+import Message from '../components/Message'
+import MessageInput from '../components/MessageInput'
+
 
 class ConversationContainer extends Component {
 
@@ -9,7 +12,7 @@ class ConversationContainer extends Component {
   }
 
   componentDidMount() {
-    const messageRetrieval = setInterval(this.fetchMessages, 5000)
+    this.messageRetrieval = setInterval(this.fetchMessages, 5000)
   }
 
   fetchMessages = () => {
@@ -22,7 +25,7 @@ class ConversationContainer extends Component {
   }
 
   loadMessages = (messages) => {
-    this.setState({ messages })
+    if (messages) this.setState({ messages })
   }
 
   renderMessages = () => {
@@ -30,7 +33,7 @@ class ConversationContainer extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(messageRetrieval)
+    clearInterval(this.messageRetrieval)
   }
 
   render() {
@@ -43,7 +46,7 @@ class ConversationContainer extends Component {
   }
 }
 
-mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     convo_id: state.message.currentConvo,
     token: state.token

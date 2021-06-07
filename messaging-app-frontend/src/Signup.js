@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Signup extends Component {
   state = {
@@ -37,19 +38,19 @@ class Signup extends Component {
       this.props.login(token.jwt)
       this.setState({
         redirect: '/messenger'
-      }) else {
+      })
+    } else {
         this.setState({
           error: "Invalid Username or Password"
-        })
-      }
+      })
     }
   }
 
   render(){
     return(
       <div className="signup">
-        {this.state.redirect ? <Redirect to={this.state.redirect} />}
-        {this.state.error ? <p>{this.state.error}</p>}
+        {this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
+        {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <label>Username: </label>
           <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />

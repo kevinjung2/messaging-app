@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Message from '../components/Message'
-import MessageInput from '../components/MessageInput'
+import ConversationTag from '../components/ConversationTag'
 import { connect } from 'react-redux'
 
 class Conversations extends Component {
@@ -23,7 +22,7 @@ class Conversations extends Component {
   }
 
   loadConvos = (convos) => {
-    this.setState({ convos })
+    if (convos.length > 0) this.setState({ convos })
   }
 
   swapConvo = event => {
@@ -43,7 +42,7 @@ class Conversations extends Component {
   }
 }
 
-mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     convo_id: state.message.currentConvo,
     token: state.token

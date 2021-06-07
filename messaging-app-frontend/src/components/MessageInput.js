@@ -43,14 +43,14 @@ class MessageInput extends Component {
       <div className="messageBar">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.content} name="content" onChange={this.handleChange} />
-          <input type="submut" value="Send" name="send" />
+          <input type="submit" value="Send" name="send" />
         </form>
       </div>
     )
   }
 }
 
-mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     convo_id: state.message.currentConvo,
     token: state.token
