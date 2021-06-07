@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ConversationTag from '../components/ConversationTag'
 import { connect } from 'react-redux'
 import Message from '../components/Message'
 import MessageInput from '../components/MessageInput'
@@ -16,20 +15,19 @@ class ConversationContainer extends Component {
   }
 
   fetchMessages = () => {
-    fetch(`http://localhost:3000/api/v1/conversations/${this.props.convo_id}`, {
-      method: "GET",
-      headers: {Authorization: `Bearer ${this.props.token}`}
-    })
-    .then(resp => resp.json())
-    .then(convo => this.loadMessages(convo.messages))
+    if (this.props.convo_id) {
+      fetch(`http://localhost:3000/api/v1/conversations/${this.props.convo_id}`, {
+        method: "GET",
+        headers: {Authorization: `Bearer ${this.props.token}`}
+      })
+      .then(resp => resp.json())
+      .then(convo => this.loadMessages(convo.conversation.messages))
+    }
   }
 
   loadMessages = (messages) => {
-    if (messages) this.setState({ messages })
-  }
-
-  renderMessages = () => {
-    this.state.messages.map(message => <Message message={message} key={message.id}/>)
+    let importantMessages = messages.filter(message => message.content !== "INIT_MESSAGE")
+    if (importantMessages.length > 0) this.setState({ messages: importantMessages })
   }
 
   componentWillUnmount() {
@@ -39,7 +37,7 @@ class ConversationContainer extends Component {
   render() {
     return(
       <div className="convoContainer">
-        {this.renderMessages()}
+        {  this.state.messages.map(message => <Message message={message} key={message.id}/>) }
         <MessageInput fetchMessages={this.fetchMessages}/>
       </div>
     )

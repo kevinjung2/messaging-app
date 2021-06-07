@@ -4,12 +4,9 @@ import Login from './Login';
 import Signup from './Signup';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
-import ConversationContainer from './containers/ConversationContainer'
-import Conversations from './containers/Conversations'
 
 function MessagingApp(props) {
   const loggedIn = () => {
-    debugger
     if (props.token === "") {
       return false
     }

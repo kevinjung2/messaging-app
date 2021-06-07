@@ -22,21 +22,22 @@ class Conversations extends Component {
   }
 
   loadConvos = (convos) => {
-    if (convos.length > 0) this.setState({ convos })
+    if (convos.conversations.length > 0) {
+      this.setState({
+        convos: convos.conversations
+      })
+      this.props.swapConvo(convos.conversations[0].id)
+    }
   }
 
   swapConvo = event => {
     this.props.swapConvo(event.target.key)
   }
 
-  renderConversations = () => {
-    this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo} handleClick={this.swapConvo}/>)
-  }
-
   render() {
     return(
       <div className="conversations">
-        {this.renderConversations()}
+        {this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo} handleClick={this.swapConvo}/>)}
       </div>
     )
   }

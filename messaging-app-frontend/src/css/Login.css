@@ -15,25 +15,40 @@
 .username {
   background: #99AAB5;
   box-sizing: border-box;
-  width: 300px;
+  position: relative;
+  width: 25%;
   height: 30px;
   display: inline-flex;
-  justify-content: left;
-  align-items: left;
-  box-shadow: 0 0 10px black;
-  margin-top: 200px;
-  margin-left: 20px;
+  top: 100px;
+  left: 385px;
 }
 
 .password {
   background: #99AAB5;
   box-sizing: border-box;
-  width: 300px;
+  position: relative;
+  width: 25%;
   height: 30px;
   display: inline-flex;
-  justify-content: right;
-  align-items: right;
-  box-shadow: 0 0 10px black;
-  margin-left: 600px;
+  top: 200px;
+  left: 136px;
+}
 
+.submit {
+  background: #99AAB5;
+  width: 75px;
+  padding: 8px;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 5px;
+  top: 300px;
+  right: 25px;
+}
+
+h3 {
+  text-align: center;
+  size: 20px;
+  padding: 0;
+  margin: 0;
+  margin-top: 40px;
 }
