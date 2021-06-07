@@ -14,9 +14,10 @@ export default class MessageInput extends Component {
     })
   }
 
+  //needs to send a post fetch request to create a message
   handleSubmit = (event) => {
     event.preventDefault()
-
+    
   }
 
   render() {
