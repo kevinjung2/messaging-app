@@ -11,3 +11,44 @@
   margin-top: -225px;
   margin-left: -500px;
 }
+
+.username {
+  background: #99AAB5;
+  box-sizing: border-box;
+  position: relative;
+  width: 25%;
+  height: 30px;
+  display: inline-flex;
+  top: 100px;
+  left: 385px;
+}
+
+.password {
+  background: #99AAB5;
+  box-sizing: border-box;
+  position: relative;
+  width: 25%;
+  height: 30px;
+  display: inline-flex;
+  top: 200px;
+  left: 136px;
+}
+
+.submit {
+  background: #99AAB5;
+  width: 75px;
+  padding: 8px;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 5px;
+  top: 300px;
+  right: 25px;
+}
+
+h3 {
+  text-align: center;
+  size: 20px;
+  padding: 0;
+  margin: 0;
+  margin-top: 40px;
+}

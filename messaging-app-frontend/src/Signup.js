@@ -52,9 +52,8 @@ class Signup extends Component {
         {this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
-          <label>Username: </label>
+          <h3>Sign Up Below: </h3>
           <input className="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-          <label>Password: </label>
           <input className="password" type="password" name="password" onChange={this.handleChange} value={this.state.password} />
           <input className="submit" type="submit" value="Sign Up" />
         </form>

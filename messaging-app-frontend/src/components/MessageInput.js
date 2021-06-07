@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import './MessageInput.css'
 
 class MessageInput extends Component {
   constructor() {
