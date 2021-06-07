@@ -38,7 +38,7 @@ class ConversationContainer extends Component {
     return(
       <div className="convoContainer">
         {this.renderMessages}
-        <MessageInput />
+        <MessageInput fetchMessages={this.fetchMessages}/>
       </div>
     )
   }

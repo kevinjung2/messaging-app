@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class MessageInput extends Component {
+class MessageInput extends Component {
   constructor() {
     super()
     this.state = {
@@ -17,7 +18,24 @@ export default class MessageInput extends Component {
   //needs to send a post fetch request to create a message
   handleSubmit = (event) => {
     event.preventDefault()
-    
+    this.sendMessage(this.state.content)
+    this.props.fetchMessages()
+    this.setState({content: ""})
+  }
+
+  sendMessage = messageText => {
+    fetch('http://localhost:3000/api/v1/messages', {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${this.props.token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: {
+        content: messageText,
+        conversation_id: this.props.convo_id
+        }
+      })
+    })
   }
 
   render() {
@@ -31,3 +49,12 @@ export default class MessageInput extends Component {
     )
   }
 }
+
+mapStateToProps = state => {
+  return {
+    convo_id: state.message.currentConvo,
+    token: state.token
+  }
+}
+
+export default connect(mapStateToProps)(MessageInput)
