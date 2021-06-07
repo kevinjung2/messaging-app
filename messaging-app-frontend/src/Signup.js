@@ -53,10 +53,10 @@ class Signup extends Component {
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <label>Username: </label>
-          <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
+          <input className="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
           <label>Password: </label>
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password} />
-          <input type="submit" value="Sign Up" />
+          <input className="password" type="password" name="password" onChange={this.handleChange} value={this.state.password} />
+          <input className="submit" type="submit" value="Sign Up" />
         </form>
       </div>
     )
