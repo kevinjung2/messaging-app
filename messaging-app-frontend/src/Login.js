@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    redirect: null,
+    error: null
   }
 
   handleChange = (event) => {
@@ -25,18 +27,29 @@ class Login extends Component {
     .then(token => this.handleLogin(token))
     this.setState({
       username: "",
-      password: ""
+      password: "",
     })
   }
 
   handleLogin = (token) => {
     console.log(token);
-    if (token.jwt) this.props.login(token.jwt)
+    if (token.jwt) {
+      this.props.login(token.jwt)
+      this.setState({
+        redirect: '/messenger'
+      }) else {
+        this.setState({
+          error: "Incorrect Username or Password"
+        })
+      }
+    }
   }
 
   render(){
     return(
       <div className="login">
+        {this.state.redirect ? <Redirect to={this.state.redirect} />}
+        {this.state.error ? <p>{this.state.error}</p>}
         <form onSubmit={this.handleSubmit}>
           <label>Username: </label>
           <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
