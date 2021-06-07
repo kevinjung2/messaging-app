@@ -27,6 +27,9 @@ class FriendsContainer extends Component {
     })
   }
 
+  handleClick = () => {
+    <Redirect to="/addfriend" /> 
+  }
 
   render() {
     return(
