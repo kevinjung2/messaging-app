@@ -9,7 +9,7 @@ export default class ConversationContainer extends Component {
 
   render() {
     return(
-      <div className={convoContainer}>
+      <div className="convoContainer">
         {this.renderMessages}
         <MessageInput />
       </div>
