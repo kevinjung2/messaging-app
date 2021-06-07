@@ -10,9 +10,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: user_params[:username])
+    @user = User.new(username: user_params[:username], password: user_params[:password])
     #User#authenticate comes from BCrypt
-    if @user && @user.authenticate(user_params[:password])
+    if @user.save
       # encode token comes from ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { user: UserSerializer.new(@user), jwt: token }, status: :accepted
