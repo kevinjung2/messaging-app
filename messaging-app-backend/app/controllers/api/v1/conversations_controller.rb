@@ -5,7 +5,7 @@ class Api::V1::ConversationsController < ApplicationController
   end
 
   def show
-    conversation = Conversation.find_by(id: params[:conversation_id])
+    conversation = Conversation.find_by(id: params[:id])
     render json: { conversation: ConversationSerializer.new(conversation) }
   end
 
