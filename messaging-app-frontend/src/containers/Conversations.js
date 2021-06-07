@@ -12,6 +12,10 @@ class Conversations extends Component {
     this.fetchConversations()
   }
 
+  handleClick = (event) => {
+
+  }
+
   fetchConversations = () => {
     fetch(`http://localhost:3000/api/v1/conversations/`, {
       method: "GET",
@@ -38,6 +42,7 @@ class Conversations extends Component {
     return(
       <div className="conversations">
         {this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo} handleClick={this.swapConvo}/>)}
+        <button onClick={this.handleClick}>New Conversation</button>
       </div>
     )
   }

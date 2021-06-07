@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import './css/Signup.css'
 
 class Signup extends Component {
   state = {

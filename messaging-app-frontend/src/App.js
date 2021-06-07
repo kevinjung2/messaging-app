@@ -9,8 +9,8 @@ function App(props) {
 
   return (
     <div className="App">
-      <ConversationContainer />
       <Conversations />
+      <ConversationContainer />
     </div>
   );
 }
