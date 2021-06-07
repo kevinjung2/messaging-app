@@ -5,17 +5,24 @@ import Login from './login';
 import Signup from './signup';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import rootReducer from './reducers/index';
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const loggedIn = () => {
+  if (store.token === "") {
+    return false
+  }
+  return true
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path="/" component={App} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
+      <Route exact path="/" > {loggedIn ? <Redirect to="/messenger" /> : <Redirect to="/login" />} </Route>
+      <Route path="/messenger" component={App} />
+      <Route path="/login" > {loggedIn ? <Redirect to="/messenger" /> : <Login />} </Route>
+      <Route path="/signup" > {loggedIn ? <Redirect to="/messenger" /> : <Signup />} </Route>
     </Router>
   </Provider>,
   document.getElementById('root')
