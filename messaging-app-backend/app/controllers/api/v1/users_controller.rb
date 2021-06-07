@@ -6,7 +6,18 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def friends
+    users = current_user.followers
+    render json: { friends: users.map{|user| UserSerializer.new(user)}}
+  end
 
+  def addfriend
+    friend = User.find_by(username: params[:user][:username])
+    if friend && current_user != friend
+      friend.followers << current_user unless friend.followers.include?(current_user)
+      current_user.followers << friend unless current_user.followers.include?(friend)
+    else
+      render json: { message: 'Friend could not be added' }
+    end
   end
 
   def create

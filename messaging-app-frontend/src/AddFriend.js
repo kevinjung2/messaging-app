@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/AddFriend.css'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 class AddFriend extends Component {
@@ -21,9 +22,10 @@ class AddFriend extends Component {
     fetch('http://localhost:3000/api/v1/friends', {
       method: "POST",
       headers: {
+        Authorization: `bearer ${this.props.token}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({user: this.state})
+      body: JSON.stringify({user: {username: this.state.username}})
     })
     this.setState({
       username: "",
@@ -40,11 +42,17 @@ class AddFriend extends Component {
         <form onSubmit={this.handleSubmit}>
           <h3>Enter Friends Name:</h3>
           <input className="username" placeholder="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-          <input className="submit" type="submit" value="Log In" />
+          <input className="submit" type="submit" value="Add Friend" />
         </form>
       </div>
     )
   }
 }
 
-export default Login
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  }
+}
+
+export default connect(mapStateToProps)(AddFriend)

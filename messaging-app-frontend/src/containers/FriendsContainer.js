@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import FriendTag from '../components/FriendTag'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class FriendsContainer extends Component {
   constructor() {
     super()
     this.state = {
-      friends: []
+      friends: [],
+      redirect: null
     }
   }
 
@@ -14,7 +16,7 @@ class FriendsContainer extends Component {
     fetch('http://localhost:3000/api/v1/friends', {
       method: 'GET',
       headers: {
-        Authorization: this.props.token
+        Authorization: `Bearer ${this.props.token}`
       }
     })
     .then(resp => resp.json())
@@ -28,12 +30,15 @@ class FriendsContainer extends Component {
   }
 
   handleClick = () => {
-    <Redirect to="/addfriend" /> 
+    this.setState({
+      redirect: true
+    })
   }
 
   render() {
     return(
       <div className="friendslist">
+        {this.state.redirect ? <Redirect to="/addfriend" /> : null}
         {this.state.friends.map(friend => <FriendTag key={friend.id} friend={friend}/>)}
         <button onClick={this.handleClick}>Add Friend</button>
       </div>

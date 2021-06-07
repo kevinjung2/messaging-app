@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import ConversationTag from '../components/ConversationTag'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 
 class Conversations extends Component {
 
   state = {
-    convos: []
+    convos: [],
+    redirect: null
   }
 
   componentDidMount() {
@@ -13,7 +15,7 @@ class Conversations extends Component {
   }
 
   handleClick = (event) => {
-
+    this.setState({redirect: true})
   }
 
   fetchConversations = () => {
@@ -30,17 +32,18 @@ class Conversations extends Component {
       this.setState({
         convos: convos.conversations
       })
-      this.props.swapConvo(convos.conversations[0].id)
     }
   }
 
   swapConvo = event => {
-    this.props.swapConvo(event.target.key)
+    this.props.swapConvo(event.target.id)
+    this.fetchConversations()
   }
 
   render() {
     return(
       <div className="conversations">
+        {this.state.redirect ? <Redirect to="/newconvo" /> : null}
         {this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo} handleClick={this.swapConvo}/>)}
         <button onClick={this.handleClick}>New Conversation</button>
       </div>

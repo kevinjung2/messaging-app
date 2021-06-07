@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './css/AddFriend.css'
+import Checkbox from './components/Checkbox'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 class NewConvo extends Component {
@@ -15,7 +17,7 @@ class NewConvo extends Component {
     fetch('http://localhost:3000/api/v1/friends', {
       method: 'GET',
       headers: {
-        Authorization: this.props.token
+        Authorization: `Bearer ${this.props.token}`
       }
     })
     .then(resp => resp.json())
@@ -24,7 +26,7 @@ class NewConvo extends Component {
 
   loadFriends = friends => {
     this.setState({
-      friends: friends.map(friend => {...friend, isChecked: false})
+      friends: friends.map(friend => ({...friend, isChecked: false}))
     })
   }
 
@@ -37,7 +39,7 @@ class NewConvo extends Component {
   handleCheck = (event) => {
     let friends = this.state.friends
     friends.forEach(friend => {
-       if (friend.id === event.target.value)
+       if (friend.id.toString() === event.target.value)
           friend.isChecked =  event.target.checked
     })
     this.setState({friends: friends})
@@ -45,11 +47,12 @@ class NewConvo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    checkedFriends = friends.filter(friend => friend.isChecked)
-    user_ids = checkedFriends.map(friend => friend.id)
+    let checkedFriends = this.state.friends.filter(friend => friend.isChecked)
+    let user_ids = checkedFriends.map(friend => friend.id)
     fetch('http://localhost:3000/api/v1/conversations', {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${this.props.token}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({conversation: {name: this.state.name, user_ids: user_ids}})
@@ -70,7 +73,7 @@ class NewConvo extends Component {
         <form onSubmit={this.handleSubmit}>
           <h3>Enter Conversation Name:</h3>
           <input className="name" placeholder="Conversation name" type="text" name="name" onChange={this.handleChange} value={this.state.name} />
-          { this.state.friends.map(friend => <input key={friend.id} onClick={this.handleCheck} type="checkbox" checked={friend.isChecked} value={friend.id} /> {friend.username})}
+          { this.state.friends.map(friend => <Checkbox id={friend.id} handleCheck={this.handleCheck} key={friend.id} isChecked={friend.isChecked} username={friend.username}/>)}
           <input className="submit" type="submit" value="Start Conversation" />
         </form>
       </div>
@@ -78,4 +81,10 @@ class NewConvo extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  }
+}
+
+export default connect(mapStateToProps)(NewConvo)
