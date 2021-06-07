@@ -26,8 +26,12 @@ class Conversations extends Component {
     this.setState({ convos })
   }
 
+  swapConvo = event => {
+    this.props.swapConvo(event.target.key)
+  }
+
   renderConversations = () => {
-    this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo}/>)
+    this.state.convos.map(convo => <ConversationTag key={convo.id} conversation={convo} handleClick={this.swapConvo}/>)
   }
 
   render() {
@@ -46,4 +50,10 @@ mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Conversations)
+const mapDispatchToProps = dispatch => {
+  return {
+    swapConvo: id => dispatch({type: "CHANGE_CONVO", convo_id: id })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Conversations)
