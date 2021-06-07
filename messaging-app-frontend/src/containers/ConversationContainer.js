@@ -27,7 +27,7 @@ class ConversationContainer extends Component {
   }
 
   renderMessages = () => {
-    this.state.messages.map(message => <Message message={message} />)
+    this.state.messages.map(message => <Message message={message} key={message.id}/>)
   }
 
   componentWillUnmount() {
@@ -37,7 +37,7 @@ class ConversationContainer extends Component {
   render() {
     return(
       <div className="convoContainer">
-        {this.renderMessages}
+        {this.renderMessages()}
         <MessageInput fetchMessages={this.fetchMessages}/>
       </div>
     )
