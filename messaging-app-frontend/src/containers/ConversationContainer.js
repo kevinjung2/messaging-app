@@ -25,7 +25,7 @@ class ConversationContainer extends Component {
     return(
       <div className="convoContainer">
         { this.props.messages.map(allMessages => allMessages.map(message => <Message message={message} key={message.id}/>)) }
-        <MessageInput fetchMessages={this.fetchMessages}/>
+        <MessageInput fetchMessages={this.handleFetch}/>
       </div>
     )
   }
