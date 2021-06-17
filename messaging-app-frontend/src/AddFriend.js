@@ -41,8 +41,8 @@ class AddFriend extends Component {
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <h3>Enter Friends Name:</h3>
-          <input className="username" placeholder="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-          <input className="submit" type="submit" value="Add Friend" />
+          <input className="friend-username" placeholder="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
+          <input className="friend-submit" type="submit" value="Add Friend" />
         </form>
       </div>
     )

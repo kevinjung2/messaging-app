@@ -55,6 +55,7 @@ class Login extends Component {
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <h3>Log In Below:</h3>
+          <a href="/signup">or signup here</a>
           <input className="username" placeholder="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
           <input className="password" placeholder="password" type="password" name="password" onChange={this.handleChange} value={this.state.password} />
           <input className="submit" type="submit" value="Log In" />

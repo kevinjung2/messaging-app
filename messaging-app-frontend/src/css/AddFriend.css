@@ -10,28 +10,31 @@
   left: 50%;
   margin-top: -225px;
   margin-left: -500px;
+  text-align: center;
 }
 
-.username {
-  background: #99AAB5;
-  box-sizing: border-box;
+.friend-username {
+  background: #36393F;
+  border: 2px solid #99AAB5;
+  color: #99AAB5;
   position: relative;
-  width: 25%;
+  border-radius: 10px;
+  width: 45%;
   height: 30px;
-  display: inline-flex;
-  top: 100px;
-  left: 385px;
+  top: 70px;
+  left: 120px;
 }
 
-.submit {
-  background: #99AAB5;
-  width: 75px;
-  padding: 8px;
+.friend-submit {
+  width: 25%;
   position: relative;
-  margin: 0 auto;
-  border-radius: 5px;
-  top: 300px;
-  right: 25px;
+  top: 150px;
+  right: 225px;
+  background: #36393F;
+  color: #99AAB5;
+  border: 2px solid #99AAB5;
+  border-radius: 10px;
+  padding:5px;
 }
 
 h3 {

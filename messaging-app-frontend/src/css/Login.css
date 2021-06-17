@@ -48,7 +48,13 @@
 h3 {
   text-align: center;
   size: 20px;
-  padding: 0;
-  margin: 0;
   margin-top: 40px;
+}
+
+a {
+  text-align: center;
+  margin-top: 5px;
+  size: 13px;
+  display: inherit;
+  color: white;
 }
