@@ -42,8 +42,8 @@ class MessageInput extends Component {
     return(
       <div className="messageBar">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.content} name="content" onChange={this.handleChange} />
-          <input type="submit" value="Send" name="send" />
+          <input id="message-bar-input" type="text" value={this.state.content} name="content" onChange={this.handleChange} />
+          <input id="message-bar-submit" type="submit" value="Send" name="send" />
         </form>
       </div>
     )
