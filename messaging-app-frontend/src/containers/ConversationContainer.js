@@ -1,33 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import fetchMessages from '../actions/fetchMessages'
 import Message from '../components/Message'
 import MessageInput from '../components/MessageInput'
 
 
 class ConversationContainer extends Component {
 
-  state = {
-    messages: []
-  }
-
   componentDidMount() {
-    this.messageRetrieval = setInterval(this.fetchMessages, 5000)
+    this.messageRetrieval = setInterval(this.handleFetch, 5000)
   }
 
-  fetchMessages = () => {
+  handleFetch = () => {
     if (this.props.convo_id) {
-      fetch(`http://localhost:3000/api/v1/conversations/${this.props.convo_id}`, {
-        method: "GET",
-        headers: {Authorization: `Bearer ${this.props.token}`}
-      })
-      .then(resp => resp.json())
-      .then(convo => this.loadMessages(convo.conversation.messages))
+      this.props.fetchMessages({convo_id: this.props.convo_id, token: this.props.token})
     }
-  }
-
-  loadMessages = (messages) => {
-    let importantMessages = messages.filter(message => message.content !== "INIT_MESSAGE")
-    if (importantMessages.length > 0) this.setState({ messages: importantMessages })
   }
 
   componentWillUnmount() {
@@ -37,7 +24,7 @@ class ConversationContainer extends Component {
   render() {
     return(
       <div className="convoContainer">
-        {  this.state.messages.map(message => <Message message={message} key={message.id}/>) }
+        { this.props.messages.map(allMessages => allMessages.map(message => <Message message={message} key={message.id}/>)) }
         <MessageInput fetchMessages={this.fetchMessages}/>
       </div>
     )
@@ -47,8 +34,16 @@ class ConversationContainer extends Component {
 const mapStateToProps = state => {
   return {
     convo_id: state.message.currentConvo,
+    messages: state.message.messages,
     token: state.token
   }
 }
 
-export default connect(mapStateToProps)(ConversationContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchMessages: convo_id => dispatch(fetchMessages(convo_id))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConversationContainer)
