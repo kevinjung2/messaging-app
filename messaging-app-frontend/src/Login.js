@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './css/Login.css'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 
 class Login extends Component {
@@ -55,7 +55,7 @@ class Login extends Component {
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <h3>Log In Below:</h3>
-          <a href="/signup">or signup here</a>
+          <Link to="/signup">or signup here</Link>
           <input className="username" placeholder="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
           <input className="password" placeholder="password" type="password" name="password" onChange={this.handleChange} value={this.state.password} />
           <input className="submit" type="submit" value="Log In" />
