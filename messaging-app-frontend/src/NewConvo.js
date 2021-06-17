@@ -72,9 +72,11 @@ class NewConvo extends Component {
         {this.state.error ? <p>{this.state.error}</p> : null}
         <form onSubmit={this.handleSubmit}>
           <h3>Enter Conversation Name:</h3>
-          <input className="name" placeholder="Conversation name" type="text" name="name" onChange={this.handleChange} value={this.state.name} />
-          { this.state.friends.map(friend => <Checkbox id={friend.id} handleCheck={this.handleCheck} key={friend.id} isChecked={friend.isChecked} username={friend.username}/>)}
-          <input className="submit" type="submit" value="Start Conversation" />
+          <input className="convo-name" placeholder="Conversation name" type="text" name="name" onChange={this.handleChange} value={this.state.name} />
+          <div className="checkboxes" >
+            { this.state.friends.map(friend => <Checkbox id={friend.id} handleCheck={this.handleCheck} key={friend.id} isChecked={friend.isChecked} username={friend.username}/>)}
+          </div>
+          <input className="convo-submit" type="submit" value="Start Conversation" />
         </form>
       </div>
     )

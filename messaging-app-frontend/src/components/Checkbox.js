@@ -2,9 +2,10 @@ import React from 'react'
 
 function Checkbox(props) {
   return(
-    <>
-      <input onChange={props.handleCheck} type="checkbox" checked={props.isChecked} value={props.id} /> {props.username}
-    </>
+    <div className="friend-checkbox">
+      <input className="checkbox" onChange={props.handleCheck} id={props.id} type="checkbox" checked={props.isChecked} value={props.id} />
+      <label className="checkbox-label" for={props.id} >{props.username}</label>
+    </div>
   )
 }
 
